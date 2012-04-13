@@ -5,33 +5,21 @@ import android.os.Bundle;
 import android.view.View;
 
 public class AnimasomActivity extends Activity {
-	private boolean _flip = false;
+	AnimationManager _am = null;
 	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);        
+        setContentView(R.layout.main);
+        
+        View view1 = this.findViewById(R.id.imageView1);
+        View view2 = this.findViewById(R.id.imageView2);
+        
+        this._am = new AnimationManager(this.getBaseContext(), view1, view2);
     }
     
     public void ClickHandler(View view) {
-    	
-        View visivel;
-        View escondida;
-
-    	if (this._flip)
-    	{
-    		escondida = (View)this.findViewById(R.id.imageView1);
-			visivel = (View)this.findViewById(R.id.imageView2);
-    	}
-    	else
-    	{
-    		escondida = (View)this.findViewById(R.id.imageView2);
-			visivel = (View)this.findViewById(R.id.imageView1);    		
-    	}
-    	
-    	visivel.setVisibility(View.VISIBLE);
-    	escondida.setVisibility(View.GONE);
-    	this._flip = !this._flip;
+    	this._am.StartAnimation();
     }
 }
