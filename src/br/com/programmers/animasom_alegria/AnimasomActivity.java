@@ -16,10 +16,11 @@ public class AnimasomActivity extends Activity {
         View view1 = this.findViewById(R.id.imageView1);
         View view2 = this.findViewById(R.id.imageView2);
         
-        this._am = new AnimationManager(this.getBaseContext(), view1, view2);
+        this._am = new AnimationManager(this.getBaseContext(), view1, view2, "paranossaalegria.mp3");
     }
     
     public void ClickHandler(View view) {
-    	this._am.StartAnimation();
+    	if (!this._am.getIsRunning())
+    		this._am.startAnimation();
     }
 }
